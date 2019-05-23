@@ -3,7 +3,11 @@ package android.kweather.com.kweather.util;
 import android.kweather.com.kweather.db.City;
 import android.kweather.com.kweather.db.County;
 import android.kweather.com.kweather.db.Province;
+import android.kweather.com.kweather.gson.Weather;
 import android.text.TextUtils;
+import android.util.Log;
+
+import com.google.gson.Gson;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -16,14 +20,18 @@ import org.json.JSONObject;
  */
 public class Utility {
     public static boolean handleProvinceResponse(String response) {
-        if (TextUtils.isEmpty(response)) {
+//        Log.i("-response------",response);
+
+        if (!TextUtils.isEmpty(response)) {
             try {
+
                 JSONArray allProvinces = new JSONArray(response);
                 for (int i = 0; i < allProvinces.length(); i++) {
                     JSONObject object = allProvinces.getJSONObject(i);
                     Province province = new Province();
                     province.setProvinceName(object.getString("name"));
                     province.setProvinceCode(object.getInt("id"));
+
                     province.save();//保存到数据库之中
                 }
                 return true;
@@ -35,14 +43,15 @@ public class Utility {
         return false;
 
     }
-    public static boolean handleCityResponse(String repsonse,int provinceId){
-        if (TextUtils.isEmpty(repsonse)){
+
+    public static boolean handleCityResponse(String response, int provinceId) {
+        if (!TextUtils.isEmpty(response)) {
             try {
-                JSONArray allCities = new JSONArray(repsonse);
+                JSONArray allCities = new JSONArray(response);
                 for (int i = 0; i < allCities.length(); i++) {
                     JSONObject cityObject = allCities.getJSONObject(i);
                     City city = new City();
-                    city.setId(cityObject.getInt("id"));
+                    city.setCityCode(cityObject.getInt("id"));
                     city.setCityName(cityObject.getString("name"));
                     city.setProvinceId(provinceId);
                     city.save();
@@ -56,8 +65,10 @@ public class Utility {
 
     }
 
-    public static boolean handleCountyResponse(String response,int cityId){
-        if (TextUtils.isEmpty(response)){
+    public static boolean handleCountyResponse(String response, int cityId) {
+        if (!TextUtils.isEmpty(response)) {
+//            Log.i("-countty-response------",response);
+
             try {
                 JSONArray allCounties = new JSONArray(response);
                 for (int i = 0; i < allCounties.length(); i++) {
@@ -65,9 +76,12 @@ public class Utility {
                     County county = new County();
                     county.setCountyName(countyObject.getString("name"));
                     county.setWeatherId(countyObject.getString("weather_id"));
+                    Log.i("-countty-id------",cityId+"");
+
+                    county.setCityId(cityId);
                     county.save();
                 }
-                return  true;
+                return true;
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -75,4 +89,18 @@ public class Utility {
 
         return false;
     }
+
+    public static Weather handleWeatherResponse(String response) {
+        try {
+            JSONObject jsonObject = new JSONObject(response);
+            JSONArray jsonArray = jsonObject.getJSONArray("HeWeather");
+            String weatherContent = jsonArray.getJSONObject(0).toString();
+            return new Gson().fromJson(weatherContent, Weather.class);
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }
+

@@ -1,7 +1,6 @@
 package android.kweather.com.kweather.db;
 
 import org.litepal.crud.DataSupport;
-import org.litepal.exceptions.DataSupportException;
 
 /**
  * Created by Administrator on 2019-05-22 11:23

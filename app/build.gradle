@@ -1,24 +1,23 @@
-apply plugin: 'com.android.application'
+apply plugin: 'com.android.application'  //声明这是一个应用库程序模块  应用库模块可以直接独立运行  库模块必须依赖于应用模块
 
 android {
     compileSdkVersion 28
     defaultConfig {
-        applicationId "android.kweather.com.kweather"
-        minSdkVersion 15
-        targetSdkVersion 28
-        versionCode 1
-        versionName "1.0"
+        applicationId "android.kweather.com.kweather"//包名
+        minSdkVersion 15//最小版本
+        targetSdkVersion 28//当前版本
+        versionCode 1//版本号
+        versionName "1.0"//版本名称
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
-    buildTypes {
+    buildTypes {//指定生成安装文件的相关配置
         release {
+            //指定是否进行混淆
             minifyEnabled false
+            //指定混淆时的配置文件
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
         }
-    }
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
     }
 }
 
@@ -29,8 +28,9 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.1.0-alpha1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0-alpha1'
-    implementation 'com.squareup.okhttp3:okhttp:3.14.1'
-    implementation 'com.github.bumptech.glide:glide:4.9.0'
     implementation 'com.google.code.gson:gson:2.8.5'
+    implementation 'com.squareup.okhttp3:okhttp:3.0.1'
     implementation 'org.litepal.android:core:1.4.1'
+    implementation files('libs/glide-3.6.0.jar')
 }
+ 

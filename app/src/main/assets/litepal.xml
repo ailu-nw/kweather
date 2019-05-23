@@ -3,9 +3,9 @@
     <dbname value="kweather" />
     <version value="1" />
     <list>
-        <mapping class="com.kweather.android.db.Province" />
-        <mapping class="com.kweather.android.db.County" />
-        <mapping class="com.kweather.android.db.City" />
+        <mapping class="android.kweather.com.kweather.db.Province" />
+        <mapping class="android.kweather.com.kweather.db.County" />
+        <mapping class="android.kweather.com.kweather.db.City" />
 
     </list>
 

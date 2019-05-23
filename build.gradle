@@ -4,9 +4,9 @@ buildscript {
     
     repositories {
         google()
-        jcenter()
+        jcenter()//代码托管仓库
     }
-    dependencies {
+    dependencies {//classpath声明了Gradle插件,用来构建版本  3.2.0是gradle的版本
         classpath 'com.android.tools.build:gradle:3.2.0-alpha14'
         
 
