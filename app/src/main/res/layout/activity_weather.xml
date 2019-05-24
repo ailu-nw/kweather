@@ -5,28 +5,35 @@
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
     tools:context=".WeatherActivity">
+
     <ImageView
         android:id="@+id/bing_pic_img"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scaleType="centerCrop"/>
-<ScrollView
-    android:id="@+id/weather_layout"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:scrollbars="none"
-    android:fitsSystemWindows="true"><!--fitsSystemWindows为系统栏留出控件-->
-    <LinearLayout
-        android:orientation="vertical"
+        android:scaleType="centerCrop" />
+
+    <ScrollView
+        android:id="@+id/weather_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <include layout="@layout/title"/>
-        <include layout="@layout/now"/>
-        <include layout="@layout/aqi"/>
-        <include layout="@layout/forecast"/>
-        <include layout="@layout/suggestion"/>
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+        android:scrollbars="none"><!--fitsSystemWindows为系统栏留出控件-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-    </LinearLayout>
+            <include layout="@layout/title" />
 
-</ScrollView>
+            <include layout="@layout/now" />
+
+            <include layout="@layout/aqi" />
+
+            <include layout="@layout/forecast" />
+
+            <include layout="@layout/suggestion" />
+
+        </LinearLayout>
+
+    </ScrollView>
 </FrameLayout>

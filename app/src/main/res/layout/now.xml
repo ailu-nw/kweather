@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_margin="15dp"
     android:orientation="vertical"
-    android:layout_height="?attr/actionBarSize">
+    android:layout_height="wrap_content">
 
     <TextView
         android:id="@+id/degree_text"
