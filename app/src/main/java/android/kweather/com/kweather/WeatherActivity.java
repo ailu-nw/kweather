@@ -7,6 +7,7 @@ import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Response;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.kweather.com.kweather.gson.Forecast;
@@ -183,6 +184,9 @@ public class WeatherActivity extends AppCompatActivity {
                             editor.putString("weather",responseText);
                             editor.apply();
                             showWeatherInfo(weather);
+
+                            Intent intent = new Intent(WeatherActivity.this,AutoUpdateService.class);
+                            startService(intent);
 
 
                         }else{
