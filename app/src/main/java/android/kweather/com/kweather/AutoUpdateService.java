@@ -69,7 +69,7 @@ public class AutoUpdateService extends Service {
         String weatherString = prefs.getString("weather",null);
         if (weatherString != null){
 
-            Weather weather = new Weather();
+            Weather weather = Utility.handleWeatherResponse(weatherString);
             String weatherId = weather.basic.weatherId;
             String weatherUrl = "http://guolin.tech/api/weather?cityid=" +
                     weatherId + "&key=bc0418b57b2d4918819d3974ac1285d9";
