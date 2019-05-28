@@ -37,7 +37,7 @@ import okhttp3.Response;
  * Description :
  * Comment: //TODO
  */
-public class ChooseFragment extends Fragment {
+    public class ChooseFragment extends Fragment {
     private static final int LEVEL_PROVINCE = 0;
     private static final int LEVEL_CITY = 1;
     private static final int LEVEL_COUNTY = 2;
@@ -87,12 +87,20 @@ public class ChooseFragment extends Fragment {
                 } else if (currentLevel == LEVEL_COUNTY) {
 
                     String weatherId = countyList.get(i).getWeatherId();
+                    if (getActivity()instanceof MainActivity){
                     Log.v("countyList的  --" +
                             "大小", countyList.size() + "");
                     Intent intent = new Intent(getActivity(), WeatherActivity.class);
                     intent.putExtra("weather_id", weatherId);
                     startActivity(intent);
                     getActivity().finish();
+                }else if (getActivity()instanceof WeatherActivity) {
+                        WeatherActivity activity = (WeatherActivity) getActivity();
+                        activity.drawerLayout.closeDrawers();
+                        activity.swipeRefreshLayout.setRefreshing(true);
+                        activity.requertWeather(weatherId);
+
+                    }
                 }
 
             }
